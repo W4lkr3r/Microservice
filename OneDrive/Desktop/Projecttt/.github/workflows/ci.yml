@@ -1,0 +1,52 @@
+name: Microservices CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # --- Setup Node.js ---
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
+
+    # --- Install Dependencies & Verify Build (Backend) ---
+    - name: Install dependencies (API Gateway)
+      run: |
+        cd api-gateway
+        npm ci
+
+    - name: Install dependencies (Auth Service)
+      run: |
+        cd auth-service
+        npm ci
+
+    - name: Install dependencies (Ticket Service)
+      run: |
+        cd ticket-service
+        npm ci
+    
+    - name: Install dependencies (Notification Service)
+      run: |
+        cd notification-service
+        npm ci
+
+    # --- Docker Build Test ---
+    - name: Build Docker Images (Compose)
+      run: docker-compose build
