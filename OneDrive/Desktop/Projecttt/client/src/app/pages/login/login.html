@@ -1,0 +1,24 @@
+<div class="login-container">
+    <div class="glass-card" style="width: 100%; max-width: 400px;">
+        <h2>Login to HelpDesk</h2>
+
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+
+        <form (ngSubmit)="onLogin()">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" [(ngModel)]="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" [(ngModel)]="password" name="password" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="/register">Register here</a></p>
+    </div>

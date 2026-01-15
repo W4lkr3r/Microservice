@@ -1,0 +1,51 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    /* Center vertically */
+    padding: 1rem;
+}
+
+/* Target the wrapper div inside login.html if you wrap it, 
+   or we can assume the user will wrap content in .glass-card manually.
+   Let's Style the container itself to act as the card for now if specific class is missing,
+   but best practice is to add the class in HTML. 
+   
+   For now, we style the internal .login-container content based on the previous HTML structure.
+*/
+
+.login-container>* {
+    /* This assumes the HTML is just a div. We will wrap it in a card in the HTML update. */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 800;
+    color: #111827;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+button {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+p {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
